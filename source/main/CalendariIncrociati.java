@@ -191,7 +191,7 @@ public class CalendariIncrociati {
 					//mi estraggo i tabellini delle squadre della giornata in questione, sfruttando gli ID precedenti
 
 					logger.info("Estrazione dati squadre");
-					rs = stmt.executeQuery("SELECT idsquadra, tot, ruolo, modportiere, modattacco, moddifesa, voto FROM tabellino WHERE idincontro IN "+filtro+" ORDER BY idsquadra");
+					rs = stmt.executeQuery("SELECT idsquadra, tot, ruolo, modportiere, modattacco, moddifesa, voto, modm1pers, modm2pers, modm3pers FROM tabellino WHERE idincontro IN "+filtro+" ORDER BY idsquadra");
 
 					//se non ho risultati in quella giornata, vado allo step successivo
 					String[][] voti = new String[squadreArray.length][];
@@ -200,6 +200,9 @@ public class CalendariIncrociati {
 					double[] modPortiere = new double[squadreArray.length];
 					double[] modAttacco = new double[squadreArray.length];
 					double[] modDifesa = new double[squadreArray.length];
+					double[] modPers1 = new double[squadreArray.length];
+					double[] modPers2 = new double[squadreArray.length];
+					double[] modPers3 = new double[squadreArray.length];
 
 					boolean saltaGiornata = true;
 					while (rs.next()){
@@ -223,6 +226,10 @@ public class CalendariIncrociati {
 							votipuri[idsq] = votipuriString.split("%");
 							saltaGiornata = false;
 						}
+						
+						modPers1[idsq] = rs.getDouble(8);
+						modPers2[idsq] = rs.getDouble(9);
+						modPers3[idsq] = rs.getDouble(10);
 					}
 					stmt.close();
 					if (saltaGiornata){
@@ -368,6 +375,50 @@ public class CalendariIncrociati {
 									homeScore += modAttacco[Integer.parseInt(currAvv)-1];
 									risPerRender[j-1][k-1] += "MA C:"+modAttacco[Integer.parseInt(currAvv)-1];
 									risPerRender[j-1][k-1] += " MA T:"+modAttacco[j-1]+"<br>";
+								}
+							}
+							
+							//mod speciali
+							if (r.usaSpeciale1){
+								if (home) {
+									homeScore += modPers1[j-1];
+									awayScore += modPers1[Integer.parseInt(currAvv)-1];
+									risPerRender[j-1][k-1] += "MS1 C:"+modPers1[j-1];
+									risPerRender[j-1][k-1] += " MS1 T:"+modPers1[Integer.parseInt(currAvv)-1]+"<br>";
+								}
+								else {
+									awayScore += modPers1[j-1];
+									homeScore += modPers1[Integer.parseInt(currAvv)-1];
+									risPerRender[j-1][k-1] += "MS1 C:"+modPers1[Integer.parseInt(currAvv)-1];
+									risPerRender[j-1][k-1] += " MS1 T:"+modPers1[j-1]+"<br>";
+								}
+							}
+							if (r.usaSpeciale2){
+								if (home) {
+									homeScore += modPers2[j-1];
+									awayScore += modPers2[Integer.parseInt(currAvv)-1];
+									risPerRender[j-1][k-1] += "MS2 C:"+modPers2[j-1];
+									risPerRender[j-1][k-1] += " MS2 T:"+modPers2[Integer.parseInt(currAvv)-1]+"<br>";
+								}
+								else {
+									awayScore += modPers2[j-1];
+									homeScore += modPers2[Integer.parseInt(currAvv)-1];
+									risPerRender[j-1][k-1] += "MS2 C:"+modPers2[Integer.parseInt(currAvv)-1];
+									risPerRender[j-1][k-1] += " MS2 T:"+modPers2[j-1]+"<br>";
+								}
+							}
+							if (r.usaSpeciale3){
+								if (home) {
+									homeScore += modPers3[j-1];
+									awayScore += modPers3[Integer.parseInt(currAvv)-1];
+									risPerRender[j-1][k-1] += "MS3 C:"+modPers3[j-1];
+									risPerRender[j-1][k-1] += " MS3 T:"+modPers3[Integer.parseInt(currAvv)-1]+"<br>";
+								}
+								else {
+									awayScore += modPers3[j-1];
+									homeScore += modPers3[Integer.parseInt(currAvv)-1];
+									risPerRender[j-1][k-1] += "MS3 C:"+modPers3[Integer.parseInt(currAvv)-1];
+									risPerRender[j-1][k-1] += " MS3 T:"+modPers3[j-1]+"<br>";
 								}
 							}
 
