@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Invertical : plugin per FCM &quot;Se avessi avuto il calendario di...&quot;">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Invertical</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/arghami/invertical">View on GitHub</a>
+
+          <h1 id="project_title">Invertical</h1>
+          <h2 id="project_tagline">plugin per FCM &quot;Se avessi avuto il calendario di...&quot;</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/arghami/invertical/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/arghami/invertical/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="invertical" class="anchor" href="#invertical" aria-hidden="true"><span class="octicon octicon-link"></span></a>invertical</h1>
+
+<hr>
+
+<ul>
+<li>          COS'E'           *
+******************************</li>
+</ul>
+
+<p>InvertiCal è un plugin che vi permette di sapere quanti punti avreste fatto se la sorte vi avesse assegnato un calendario di un'altra squadra. Quante volte avete invidiato qualcuno perchè gli capita sempre l'avversario che fa meno gol? Ecco, ora potrete avere i dati reali a vostra disposizione per aumentare il vostro rammarico...</p>
+
+<hr>
+
+<ul>
+<li>       INSTALLAZIONE       *
+******************************</li>
+</ul>
+
+<p>Il programma è scritto in java, per cui requisito indispensabile per farlo funzionare è la presenza di una java virtual machine, che potete scaricare dal seguente indirizzo:
+<a href="http://www.java.com/it/download/manual.jsp">http://www.java.com/it/download/manual.jsp</a>
+oppure sul sito della sun.
+Può essere che sul vostro pc sia già installata una versione di java. In tal caso, non dovrete scaricare nulla.</p>
+
+<p>Per utilizzare il programma è sufficiente scompattare il pacchetto in un punto qualsiasi del vostro pc. Se lo volete utilizzare come plugin per FCM, dovete mettere i file "invertical.bat" e "invertiCal.jar" nella cartella plugin di FCM e seguire le istruzioni della sezione "Utilizzo".</p>
+
+<hr>
+
+<ul>
+<li>         UTILIZZO          *
+******************************</li>
+</ul>
+
+<p>Il programma funziona solo su leghe gestite con Fantacalcio Manager. Può funzionare in due modalità:</p>
+
+<ul>
+<li>Stand Alone</li>
+<li>
+<p>Plugin per il sito di FCM.</p>
+
+<p>Modalità Stand Alone
+Per utilizzare questa modalità è sufficiente fare doppio click sul file "invertiCal.jar" (in questo caso il .bat non serve a niente). Il programma vi chiederà di specificare il file .fcm della vostra lega da cui prelevare i dati. Dopodichè vi verrà chiesto di specificare la competizione su cui effettuare il calcolo. L'output verrà generato nella stessa cartella in cui avete lanciato il programma.
+NB: se il .jar è associato a un'altra applicazione (ad esempio Nokia PC Suite) dovrete eseguirlo cliccando col destro e poi selezionando "apri con... -&gt; java platform" (o qualcosa del genere). Se non ci riuscite nemmeno così, aprite una finestra di DOS, portatevi nella cartella dove c'è il jar e digitate:
+java -jar invertiCal.jar</p>
+
+<p>Modalità Plugin
+Mettete i file "invertical.bat" e "invertiCal.jar" nella cartella plugin di FCM; aprite il file invertical.bat col blocco note e controllate che il percorso
+cd c:\programmi\FCM\plugin
+corrisponda effettivamente alla cartella in cui avete installato FCM. In caso contrario, correggetela manualmente.
+Inserite nel .ini della vostra skin il riferimento al file invertical.bat: potete metterlo sia tra i "prima" che tra i "dopo", l'esecuzione non cambia.
+Il plugin verrà quindi lanciato all'atto della generazione del sito, e vi verrà richiesto di selezionare la competizione e quindi il girone nell'ambito della competizione. L'output viene salvato all'interno del sito generato.</p>
+</li>
+</ul>
+
+<hr>
+
+<ul>
+<li>        LIMITAZIONI        *
+******************************</li>
+</ul>
+
+<p>Per la sua natura, il programma può funzionare solo su competizioni con un "reale" calendario e con UN NUMERO PARI DI SQUADRE. Per intenderci, se provate a invertire il calendario di una coppa o di una competizione a gironi, non ho idea di cosa vi possa saltare fuori...
+PER ORA il programma non tiene conto dei modificatori di modulo. Tiene invece conto (a meno di bug) di tutte le altre regole impostate nella lega (modificatori classici, fasce di punteggio e regole relative, fattore campo...)</p>
+
+<hr>
+
+<ul>
+<li>          OUTPUT          *
+******************************</li>
+</ul>
+
+<p>L'output generato è composto da:</p>
+
+<ul>
+<li><p>cartella "incroDet"
++
+|____ ricalcolo di ogni singola giornata, con tutti i possibili incroci, in formato html
+|____ ricalcolo di ogni singola giornata, con tutti i possibili incroci, in formato txt
+|____ somma dei punti ottenuti lungo tutte le giornate, con tutti i possibili incroci, in formato html
+|____ somma dei punti ottenuti lungo tutte le giornate, con tutti i possibili incroci, in formato txt</p></li>
+<li><p>cartella "js"
++
+|____ somma dei punti ottenuti lungo tutte le giornate, con tutti i possibili incroci, in formato javascript</p></li>
+<li><p>log.txt: contiene uno storico dell'esecuzione, utile (per me) per capire se ci sono stati degli errori.</p></li>
+</ul>
+
+<p>Gli output generati dal plugin sono estremamente grezzi. Per avere una grafica accattivante, scaricate anche i file di grafica sviluppati da Maelstrom (cercate sul forum per sapere l'indirizzo esatto).</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Invertical maintained by <a href="https://github.com/arghami">arghami</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
