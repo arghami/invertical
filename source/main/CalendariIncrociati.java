@@ -123,7 +123,7 @@ public class CalendariIncrociati {
 				//seleziono le squadre
 				logger.info("Estrazione squadre");
 				Hashtable<Integer,String> nomiteam = new Hashtable<Integer,String>();
-				ResultSet rs = stmt.executeQuery("SELECT idsquadra, nome FROM iscritta, fantasquadra WHERE idsquadra=id AND idgirone = "+idGirone);
+				ResultSet rs = stmt.executeQuery("SELECT i.idsquadra, f.nome FROM iscritta i, fantasquadra f WHERE i.idsquadra=f.id AND i.idgirone = "+idGirone);
 				while (rs.next()){
 					nomiteam.put(rs.getInt(1),rs.getString(2));
 				}
@@ -343,7 +343,7 @@ public class CalendariIncrociati {
 								totCent2 += (5-numcent2)*r.VUCentrocampista;
 								double diff = totCent1-totCent2;
 
-								rs = stmt.executeQuery("SELECT valore FROM tabellacentrocampodiffe, fascia WHERE idcompetizione = "+compSel+" AND idfascia=id AND "+Math.abs(diff)+">=min AND "+Math.abs(diff)+"<max");
+								rs = stmt.executeQuery("SELECT f.valore FROM tabellacentrocampodiffe d, fascia f WHERE d.idcompetizione = "+compSel+" AND d.idfascia=f.id AND "+Math.abs(diff)+">=f.min AND "+Math.abs(diff)+"<f.max");
 								double mod = 0.0;
 								while (rs.next()){
 									mod = rs.getDouble(1);
@@ -454,11 +454,11 @@ public class CalendariIncrociati {
 								//conversione brutale in base alla fascia
 								int homeGol = 0;
 								int awayGol = 0;
-								rs = stmt.executeQuery("SELECT valore FROM tabellagol, fascia WHERE idCompetizione = "+compSel+" AND idFascia=id AND min>"+homeScore+ " ORDER BY min");
+								rs = stmt.executeQuery("SELECT f.valore FROM tabellagol g, fascia f WHERE g.idCompetizione = "+compSel+" AND g.idFascia=f.id AND f.min>"+homeScore+ " ORDER BY f.min");
 								if (rs.next()){
 									homeGol = rs.getInt(1)-1;
 								}
-								rs = stmt.executeQuery("SELECT valore FROM tabellagol, fascia WHERE idCompetizione = "+compSel+" AND idFascia=id AND min>"+awayScore+ " ORDER BY min");
+								rs = stmt.executeQuery("SELECT f.valore FROM tabellagol g, fascia f WHERE g.idCompetizione = "+compSel+" AND g.idFascia=f.id AND f.min>"+awayScore+ " ORDER BY f.min");
 								if (rs.next()){
 									awayGol = rs.getInt(1)-1;
 								}
@@ -636,12 +636,12 @@ public class CalendariIncrociati {
 			}
 		}
 		double medDif1 = totDif/numDif;
-		ResultSet rs = stmt.executeQuery("SELECT valore FROM tabelladifesa, fascia WHERE idcompetizione = "+compSel+" AND idfascia=id AND "+medDif1+">=min AND "+medDif1+"<max");
+		ResultSet rs = stmt.executeQuery("SELECT f.valore FROM tabelladifesa d, fascia f WHERE d.idcompetizione = "+compSel+" AND d.idfascia=f.id AND "+medDif1+">=f.min AND "+medDif1+"<f.max");
 		double mod = 0.0;
 		if (rs.next()){
 			mod = rs.getDouble(1);
 		}
-		rs = stmt.executeQuery("SELECT valore FROM tabellanumdifensori, fascia WHERE idcompetizione = "+compSel+" AND idfascia=id AND "+numDif+"=min");
+		rs = stmt.executeQuery("SELECT f.valore FROM tabellanumdifensori d, fascia f WHERE d.idcompetizione = "+compSel+" AND d.idfascia=f.id AND "+numDif+"=f.min");
 		if (rs.next()){
 			mod += rs.getDouble(1);
 		}
