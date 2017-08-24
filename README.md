@@ -50,8 +50,7 @@ Il plugin verrà quindi lanciato all'atto della generazione del sito, e vi verrà 
 *         LIMITAZIONI        *
 ******************************
 
-Per la sua natura, il programma può funzionare solo su competizioni con un "reale" calendario e con UN NUMERO PARI DI SQUADRE. Per intenderci, se provate a invertire il calendario di una coppa o di una competizione a gironi, non ho idea di cosa vi possa saltare fuori...
-PER ORA il programma non tiene conto dei modificatori di modulo. Tiene invece conto (a meno di bug) di tutte le altre regole impostate nella lega (modificatori classici, fasce di punteggio e regole relative, fattore campo...)
+Per la sua natura, il programma può funzionare solo su competizioni con un "reale" calendario e con UN NUMERO PARI DI SQUADRE. Per intenderci, se provate a invertire il calendario di una coppa o di una competizione a gironi, non ho idea di cosa vi possa saltare fuori.
 
 
 
