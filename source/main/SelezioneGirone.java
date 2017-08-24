@@ -20,7 +20,7 @@ public class SelezioneGirone extends javax.swing.JFrame implements ActionListene
 	private static final long serialVersionUID = 1L;
 	private JPanel jPanel1;
 	private JButton annulla;
-	private JComboBox listaGironi;
+	private JComboBox<String> listaGironi;
 	private JLabel jLabel1;
 	private JButton ok;
 
@@ -74,8 +74,8 @@ public class SelezioneGirone extends javax.swing.JFrame implements ActionListene
 					jLabel1.setBounds(35, 28, 250, 21);
 				}
 				{
-					ComboBoxModel listaGironiModel = new DefaultComboBoxModel(gironi);
-					listaGironi = new JComboBox();
+					ComboBoxModel<String> listaGironiModel = new DefaultComboBoxModel<>(gironi);
+					listaGironi = new JComboBox<>();
 					jPanel1.add(listaGironi);
 					listaGironi.setModel(listaGironiModel);
 					listaGironi.setBounds(35, 63, 315, 28);
@@ -90,7 +90,7 @@ public class SelezioneGirone extends javax.swing.JFrame implements ActionListene
 
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource().equals(ok)){
-			CalendariIncrociati.calc(listaGironi.getItemAt(listaGironi.getSelectedIndex()).toString(),3);
+			CalendariIncrociati.doCalcolo(listaGironi.getItemAt(listaGironi.getSelectedIndex()).toString());
 			this.dispose();
 		}
 		if (arg0.getSource().equals(annulla)){

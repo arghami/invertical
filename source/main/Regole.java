@@ -4,8 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Hashtable;
+import java.util.logging.Logger;
 
 public class Regole {
+	private static Logger logger = Logger.getLogger("main.Regole");
+	
 	public int puntiPerVittoria = 3;
 	public double fattoreCampo = 0;
 	public boolean regolaPortiere = false;
@@ -70,32 +73,32 @@ public class Regole {
 			regolaDifesaVU = rs.getBoolean(25);
 			VUDifensore = rs.getDouble(26);
 			
-			CalendariIncrociati.logger.info("puntiPerVittoria: "+puntiPerVittoria);
-			CalendariIncrociati.logger.info("fattoreCampo: "+fattoreCampo);
-			CalendariIncrociati.logger.info("regolaPortiere: "+regolaPortiere);
-			CalendariIncrociati.logger.info("regolaDifesa: "+regolaDifesa);
-			CalendariIncrociati.logger.info("regolaCentMedia: "+regolaCentMedia);
-			CalendariIncrociati.logger.info("regolaCentDiffe: "+regolaCentDiffe);
-			CalendariIncrociati.logger.info("regolaDiff4: "+regolaDiff4);
-			CalendariIncrociati.logger.info("regolaDiff10: "+regolaDiff10);
-			CalendariIncrociati.logger.info("regolaMin60: "+regolaMin60);
-			CalendariIncrociati.logger.info("usaSpeciale1: "+usaSpeciale1);
-			CalendariIncrociati.logger.info("usaSpeciale2: "+usaSpeciale2);
-			CalendariIncrociati.logger.info("usaSpeciale3: "+usaSpeciale3);
-			CalendariIncrociati.logger.info("regolaAttacco: "+regolaAttacco);
-			CalendariIncrociati.logger.info("regolaDelta3: "+regolaDelta3);
-			CalendariIncrociati.logger.info("regolaMin59: "+regolaMin59);
-			CalendariIncrociati.logger.info("regolaDiff4Valore: "+regolaDiff4Valore);
-			CalendariIncrociati.logger.info("regolaDiff10Valore: "+regolaDiff10Valore);
-			CalendariIncrociati.logger.info("regolaMin60Valore: "+regolaMin60Valore);
-			CalendariIncrociati.logger.info("regolaMin60Delta: "+regolaMin60Delta);
-			CalendariIncrociati.logger.info("regolaDelta3Valore: "+regolaDelta3Valore);
-			CalendariIncrociati.logger.info("regolaMin59Valore: "+regolaMin59Valore);
-			CalendariIncrociati.logger.info("regolaMin59Delta: "+regolaMin59Delta);
-			CalendariIncrociati.logger.info("regolaMin59Almeno: "+regolaMin59Almeno);
-			CalendariIncrociati.logger.info("VUCentrocampista: "+VUCentrocampista);
-			CalendariIncrociati.logger.info("regolaDifesaVU: "+regolaDifesaVU);
-			CalendariIncrociati.logger.info("VUDifensore: "+VUDifensore);
+			logger.info("puntiPerVittoria: "+puntiPerVittoria);
+			logger.info("fattoreCampo: "+fattoreCampo);
+			logger.info("regolaPortiere: "+regolaPortiere);
+			logger.info("regolaDifesa: "+regolaDifesa);
+			logger.info("regolaCentMedia: "+regolaCentMedia);
+			logger.info("regolaCentDiffe: "+regolaCentDiffe);
+			logger.info("regolaDiff4: "+regolaDiff4);
+			logger.info("regolaDiff10: "+regolaDiff10);
+			logger.info("regolaMin60: "+regolaMin60);
+			logger.info("usaSpeciale1: "+usaSpeciale1);
+			logger.info("usaSpeciale2: "+usaSpeciale2);
+			logger.info("usaSpeciale3: "+usaSpeciale3);
+			logger.info("regolaAttacco: "+regolaAttacco);
+			logger.info("regolaDelta3: "+regolaDelta3);
+			logger.info("regolaMin59: "+regolaMin59);
+			logger.info("regolaDiff4Valore: "+regolaDiff4Valore);
+			logger.info("regolaDiff10Valore: "+regolaDiff10Valore);
+			logger.info("regolaMin60Valore: "+regolaMin60Valore);
+			logger.info("regolaMin60Delta: "+regolaMin60Delta);
+			logger.info("regolaDelta3Valore: "+regolaDelta3Valore);
+			logger.info("regolaMin59Valore: "+regolaMin59Valore);
+			logger.info("regolaMin59Delta: "+regolaMin59Delta);
+			logger.info("regolaMin59Almeno: "+regolaMin59Almeno);
+			logger.info("VUCentrocampista: "+VUCentrocampista);
+			logger.info("regolaDifesaVU: "+regolaDifesaVU);
+			logger.info("VUDifensore: "+VUDifensore);
 		}
 		
 		rs = stmt.executeQuery("select numDife, numCent, numAtta, Modif, ModifAvv " +
@@ -108,6 +111,6 @@ public class Regole {
 			String mod = rs.getInt(1)+"-"+rs.getString(2)+"-"+rs.getString(3);
 			moduli.put(mod, new Modulo(rs.getDouble(4), rs.getDouble(5)));
 		}
-		CalendariIncrociati.logger.info("Moduli: "+moduli);
+		logger.info("Moduli: "+moduli);
 	}
 }

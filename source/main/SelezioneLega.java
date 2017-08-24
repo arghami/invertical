@@ -104,7 +104,7 @@ public class SelezioneLega extends javax.swing.JFrame implements ActionListener 
 			}
 		}
 		if (arg0.getSource().equals(ok)){
-			CalendariIncrociati.calc(filename.getText(),1);
+			CalendariIncrociati.chooseCompetizione(filename.getText());
 			this.dispose();
 		}
 		if (arg0.getSource().equals(annulla)){

@@ -20,7 +20,7 @@ public class SelezioneCompetizione extends javax.swing.JFrame implements ActionL
 	private static final long serialVersionUID = 1L;
 	private JPanel jPanel1;
 	private JButton annulla;
-	private JComboBox listaCompetizioni;
+	private JComboBox<String> listaCompetizioni;
 	private JLabel jLabel1;
 	private JButton ok;
 
@@ -74,8 +74,8 @@ public class SelezioneCompetizione extends javax.swing.JFrame implements ActionL
 					jLabel1.setBounds(35, 28, 250, 21);
 				}
 				{
-					ComboBoxModel listaCompetizioniModel = new DefaultComboBoxModel(competizioni);
-					listaCompetizioni = new JComboBox();
+					ComboBoxModel<String> listaCompetizioniModel = new DefaultComboBoxModel<>(competizioni);
+					listaCompetizioni = new JComboBox<>();
 					jPanel1.add(listaCompetizioni);
 					listaCompetizioni.setModel(listaCompetizioniModel);
 					listaCompetizioni.setBounds(35, 63, 315, 28);
@@ -90,7 +90,7 @@ public class SelezioneCompetizione extends javax.swing.JFrame implements ActionL
 
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource().equals(ok)){
-			CalendariIncrociati.calc(listaCompetizioni.getItemAt(listaCompetizioni.getSelectedIndex()).toString(),2);
+			CalendariIncrociati.chooseGirone(listaCompetizioni.getItemAt(listaCompetizioni.getSelectedIndex()).toString());
 			this.dispose();
 		}
 		if (arg0.getSource().equals(annulla)){
